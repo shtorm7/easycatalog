@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Создание подкаталога</title>
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('show_main_catalog') }}">
+        Пример каталога
+        </a>
+    </nav>
+    <form method="POST" enctype="multipart/form-data" class="container mx-auto py-4">
+		<h1 class="mb-4">Создание подкаталога товаров</h1>
+		<h5>Название пути</h5>
+		<input class="form-control mb-3 w-50" type="text" name="pathname" required></input>
+		<h5>Название подкаталога</h5>
+		<input class="form-control mb-3 w-50" type="text" name="name" required></input>
+		<h5>Название таблицы</h5>
+		<input class="form-control mb-3 w-50" type="text" name="table_name" required></input>
+		<h5>SQL запрос</h5>
+		<textarea class="form-control mb-3 w-75" type="text" name="sql_query" rows="5" style="resize: none"></textarea>
+		<button class="btn btn-success" type="submit">
+		Создать
+		</button>
+	</form>
+</body>
+</html>

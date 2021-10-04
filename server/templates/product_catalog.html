@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style type="text/css">
+      .card{
+        display: block;
+        width: 20rem;
+        height: 28rem;
+        text-decoration: none;
+        color: black;
+      }
+      .card:hover {
+        color: gray;
+      }
+      .card-img-container {
+        height: 20rem;
+      }
+    </style>
+    <title>{{ name }}</title>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('show_main_catalog') }}">
+        Пример каталога
+        </a>
+    </nav>
+    <div class="container w-100 py-4">
+      <div class="d-flex align-items-center">
+        {% if path != '' %}
+        <a class="text-decoration-none p-0 mr-2" style="color: black;" href="{{ url_for('show_catalog', path=return_path) }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+          </svg>
+        </a>
+        {% endif %}
+        <h1>{{ name }}</h1>
+      </div>
+      <a class="m-1 btn btn-success" href="{{ url_for('get_excel', path=path) }}">
+        Cкачать таблицу
+      </a> 
+      <a class="m-1 btn btn-secondary" href="{{ url_for('get_excel_pattern', path=path) }}">
+        Cкачать пример
+      </a>
+      <a class="m-1 btn btn-primary" href="{{ url_for('add_products', path=path) }}">
+        Загрузить таблицу
+      </a>
+      <div class="products mt-2 d-flex flex-wrap justify-content-center justify-content-md-start w-100">
+        {% for product in products %}
+        <a class="card m-1" href="{{ url_for('show_product', path=path, id=product['id']) }}">
+          <div class="card-img-container p-2 d-flex justify-content-center">
+            <img class="img-fluid" style="object-fit: cover;" src="
+            {% if product.get('Иконка', None) != None %}
+            {{ url_for('get_image', name=product.get('Иконка')) }}
+            {% else %}
+            {{ url_for('get_image', name='imagenotfound.png') }}
+            {% endif %}
+            ">
+          </div>
+          <div class="card-body m-0">
+            <h4 class="card-title">{{ product['Название'] }}</h4>
+            <p class="card-title">{{ product['Цена']}}Р</p>
+          </div>
+        </a>
+      {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

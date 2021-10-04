@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Выгрузка таблицы</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	</head>
+	<body>
+		<nav class="navbar navbar-dark bg-dark">
+			<a class="navbar-brand" href="{{ url_for('show_main_catalog') }}">
+			Пример каталога
+			</a>
+		</nav>
+		<form method="POST" enctype="multipart/form-data" class="container mx-auto py-4">
+			<h1 class="mb-4">Загрузка таблицы</h1>
+			<input type="file" name="table"></input>
+			<br>
+			<button class="btn btn-success p-1 mt-3" type="submit">
+			Загрузить
+			</button>
+		</form>
+	</body>
+</html>
